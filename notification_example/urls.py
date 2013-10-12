@@ -4,9 +4,10 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 
+from notification.views import IndexView
+
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'notification_example.views.home', name='home'),
+    url(r'^$', IndexView.as_view(), name='home'),
     # url(r'^notification_example/', include('notification_example.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
