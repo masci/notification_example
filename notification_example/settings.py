@@ -161,3 +161,5 @@ LOGGING = {
         },
     }
 }
+
+MESSAGE_STORAGE = 'stored_messages.storage.PersistentStorage'
