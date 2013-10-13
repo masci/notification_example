@@ -1,3 +1,31 @@
 {% extends 'base.html' %}
+{% load  stored_messages_tags %}
 
 {% block messages_active %}active{% endblock %}
+
+{% block contents %}
+    <div class="row">
+
+    {% if user.is_authenticated %}
+    <ul class="nav nav-tabs ">
+        <li class="active"><a href="#">Notifications</a></li>
+    </ul>
+
+    <div class=".col-md-8">&nbsp;</div>
+
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#">Unread</a></li>
+            <li><a href="#">All</a></li>
+        </ul>
+    </div>
+
+    <div class="col-md-9">
+        {% stored_messages_list %}
+    </div>
+{% else %}
+
+
+{% endif %}
+    </div>
+{% endblock %}

@@ -4,7 +4,9 @@
 
 {% block contents %}
 {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+    <div class="starter-template">
+        <p>You're now logged in and by visiting this page you've already triggered one message sending.</p>
+    </div>
 {% else %}
     <div class="starter-template">
         <h1>Welcome</h1>
