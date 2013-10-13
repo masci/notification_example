@@ -1,3 +1,29 @@
 {% extends 'base.html' %}
 
 {% block home_active %}active{% endblock %}
+
+{% block contents %}
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+{% else %}
+    <div class="starter-template">
+        <h1>Welcome</h1>
+        <p class="lead">
+            This app has te purpose to show how to implement github-like notifications.<br>
+            Please login with <em>test/test</em> username and password.
+        </p>
+        <form class="form-inline" role="form" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputEmail2">Username</label>
+                <input id="id_username" class="form-control" maxlength="254" name="username" type="text" placeholder="test">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputPassword2">Password</label>
+                <input id="id_password" class="form-control" maxlength="4096" name="password" type="password" placeholder="test">
+            </div>
+            <button type="submit" class="btn btn-default">Sign in</button>
+        </form>
+    </div>
+{% endif %}
+{% endblock %}
