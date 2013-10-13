@@ -25,6 +25,4 @@ class MessagesView(TemplateView):
     template_name = 'notification/messages.html'
 
     def get_context_data(self, **kwargs):
-        add_message(self.request, stored_messages.STORED_INFO,
-                    'You visited the notifications page')
         return super(MessagesView, self).get_context_data(**kwargs)
