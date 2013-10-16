@@ -24,5 +24,10 @@ class IndexView(FormView):
 class MessagesView(TemplateView):
     template_name = 'notification/messages.html'
 
+    def get(self, request, *args, **kwargs):
+        if 'unread' in request.GET:
+            kwargs['unread'] = True
+        return super(MessagesView, self).get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         return super(MessagesView, self).get_context_data(**kwargs)
