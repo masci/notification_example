@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
-{% load  stored_messages_tags %}
+{% load stored_messages_tags %}
+{% load staticfiles %}
 
 {% block messages_active %}active{% endblock %}
 
 {% block contents %}
+<div ng-app="messageApp">
+
     <div class="row">
 
     {% if user.is_authenticated %}
@@ -27,9 +30,16 @@
             {% stored_messages_list %}
         {% endif %}
     </div>
-{% else %}
 
-
-{% endif %}
+    {% else %}
+        <!-- todo anon user view this -->
+    {% endif %}
     </div>
+</div>
+{% endblock %}
+
+{% block js %}
+    <!-- Angularjs -->
+    <script src="//cdn.jsdelivr.net/angularjs/1.2.0rc2/angular-animate.min.js"></script>
+    <script src="{%  static "notification/notification.js" %}"></script>
 {% endblock %}
