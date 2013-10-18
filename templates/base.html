@@ -1,49 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Bootstrap 101 Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 60px;
-        }
-        .starter-template {
-          padding: 40px 15px;
-          text-align: center;
-        }
-    </style>
-  </head>
-  <body>
+    <head>
+        <title>Bootstrap 101 Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                padding-top: 60px;
+            }
 
-      <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
+            .starter-template {
+                padding: 40px 15px;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Project name</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="{% block home_active %}{% endblock %}"><a
+                                href="{% url 'home' %}">Home</a></li>
+                        <li class="{% block messages_active %}{% endblock %}"><a
+                                href="{% url 'messages' %}">Messages <span class="badge">42</span></a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="{% block home_active %}{% endblock %}"><a href="{% url 'home' %}">Home</a></li>
-            <li class="{% block messages_active %}{% endblock %}"><a href="{% url 'messages' %}">Messages <span class="badge">42</span></a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
 
-    <div class="container">
-    {% block contents %}
-    {% endblock %}
-    </div><!-- /.container -->
+        <div class="container">
+            {% block contents %}
+            {% endblock %}
+        </div>
+        <!-- /.container -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="//code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  </body>
+        {% block js %}
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="//code.jquery.com/jquery.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        {% endblock %}
+    </body>
 </html>
