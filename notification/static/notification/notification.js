@@ -2,7 +2,20 @@ var messageApp = angular.module('messageApp', []);
 
 
 messageApp.controller('MainCtrl', ['$scope', function ($scope) {
-  // Controller magic
+    // Messages array
+    $scope.inbox = {};
+
+    // retrieve Messages from the restAPI
+    $http({
+        method: 'GET',
+        url: '//localhost:8000/api/inbox'
+    })
+    .success(function (data, status, headers, config) {
+        $scope.inbox.messages = data;
+    })
+    .error(function (data, status, headers, config) {
+        // something went wrong :(
+    });
 }]);
 
 
