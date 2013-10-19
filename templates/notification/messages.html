@@ -25,9 +25,19 @@
 
     <div class="col-md-9">
         {% if not unread %}
-            {% stored_messages_archive %}
+            {% stored_messages_archive 100 %}
         {% else %}
-            {% stored_messages_list %}
+            <div ng-app="messageApp">
+            {% verbatim %}
+                <div ng-controller="MainCtrl">
+                    <ul>
+                      <li class="list-group-item" ng-repeat="message in messages">
+                        {{ message.message.date | date:'MMM d, y h:mm:ss a' }} - {{ message.message.message }}
+                      </li>
+                    </ul>
+                </div>
+            </div>
+            {% endverbatim %}
         {% endif %}
     </div>
 
@@ -39,7 +49,8 @@
 {% endblock %}
 
 {% block js %}
+    {{ block.super }}
     <!-- Angularjs -->
-    <script src="//cdn.jsdelivr.net/angularjs/1.2.0rc2/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
     <script src="{%  static "notification/notification.js" %}"></script>
 {% endblock %}
