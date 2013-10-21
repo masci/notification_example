@@ -41,6 +41,11 @@
                             <a href="{% url 'messages' %}?unread">Messages
                                 <span class="badge" ng-if="messages.length">{% verbatim %}{{ messages.length }}{% endverbatim %}</span></a>
                         </li>
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
