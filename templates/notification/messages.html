@@ -27,18 +27,26 @@
         {% if not unread %}
             {% stored_messages_archive 100 %}
         {% else %}
-            <div ng-app="messageApp">
-            {% verbatim %}
-                <div ng-controller="MainCtrl">
-                    <ul class="list-group">
-                      <li class="list-group-item" ng-repeat="message in messages">
-                        {{ message.message.date | date:'MMM d, y h:mm:ss a' }} - {{ message.message.message }}
-                          <a ng-click="markRead($index)" style="cursor:pointer">Mark as read</a>
-                      </li>
-                    </ul>
+            <div ng-app="messageApp" ng-controller="MainCtrl">
+                <div class="text-right">
+                    <button type="button" class="btn btn-success" ng-click="markAllRead()">Mark all read</button>
+                </div>
+
+                <hr>
+
+                {% verbatim %}
+                <ul class="list-group" ng-if="messages.length">
+                  <li class="list-group-item" ng-repeat="message in messages">
+                    {{ message.message.date | date:'MMM d, y h:mm:ss a' }} - {{ message.message.message }}
+                      <a ng-click="markRead($index)" style="cursor:pointer">Mark as read</a>
+                  </li>
+                </ul>
+                {% endverbatim %}
+
+                <div class="list-group" ng-if="messages.length == 0">
+                    <p>No messages here!</p>
                 </div>
             </div>
-            {% endverbatim %}
         {% endif %}
     </div>
 

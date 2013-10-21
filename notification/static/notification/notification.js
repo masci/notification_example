@@ -19,7 +19,7 @@ messageApp.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
 
     // mark messages read
     $scope.markRead = function (index) {
-        var id = $scope.messages[index].message.id;
+        var id = $scope.messages[index].id;
         $http({
             method: 'POST',
             url: '//127.0.0.1:8000/api/inbox/'+id+'/read/',
@@ -27,9 +27,25 @@ messageApp.controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
             xsrfCookieName: 'csrftoken'
         })
         .success(function (data, status, headers, config) {
-            $scope.messages.splice(index, 1)
+            $scope.messages.splice(index, 1);
         })
         .error(function (data, status, headers, config) {
+            // something went wrong :(
+        })
+    };
+
+    // mark all read
+    $scope.markAllRead = function () {
+        $http({
+            method: 'POST',
+            url: '//127.0.0.1:8000/api/mark_all_read/',
+            xsrfHeaderName: 'X-CSRFToken',
+            xsrfCookieName: 'csrftoken'
+        })
+        .success(function(data, status, headers, config) {
+            $scope.messages.splice(0, $scope.messages.length);
+        })
+        .error(function(data, status, headers, config){
             // something went wrong :(
         })
     };
