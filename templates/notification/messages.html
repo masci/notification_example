@@ -5,54 +5,51 @@
 {% block messages_active %}active{% endblock %}
 
 {% block contents %}
-<div ng-app="messageApp">
+<div class="row">
 
-    <div class="row">
+{% if user.is_authenticated %}
+<ul class="nav nav-tabs ">
+    <li class="active"><a href="#">Notifications</a></li>
+</ul>
 
-    {% if user.is_authenticated %}
-    <ul class="nav nav-tabs ">
-        <li class="active"><a href="#">Notifications</a></li>
+<div class=".col-md-8">&nbsp;</div>
+
+<div class="col-md-3">
+    <ul class="nav nav-pills nav-stacked">
+        <li class="{% if unread %}active{% endif %}"><a href="{% url 'messages' %}?unread">Unread <span class="badge" ng-if="messages.length">{% verbatim %}{{ messages.length }}{% endverbatim %}</span></a></li>
+        <li class="{% if not unread %}active{% endif %}"><a href="{% url 'messages' %}">All</a></li>
     </ul>
+</div>
 
-    <div class=".col-md-8">&nbsp;</div>
-
-    <div class="col-md-3">
-        <ul class="nav nav-pills nav-stacked">
-            <li class="{% if unread %}active{% endif %}"><a href="{% url 'messages' %}?unread">Unread <span class="badge" ng-if="messages.length">{% verbatim %}{{ messages.length }}{% endverbatim %}</span></a></li>
-            <li class="{% if not unread %}active{% endif %}"><a href="{% url 'messages' %}">All</a></li>
-        </ul>
-    </div>
-
-    <div class="col-md-9">
-        {% if not unread %}
-            {% stored_messages_archive 100 %}
-        {% else %}
-            <div >
-                <div class="text-right">
-                    <button type="button" class="btn btn-success" ng-click="markAllRead()">Mark all read</button>
-                </div>
-
-                <hr>
-
-                {% verbatim %}
-                <ul class="list-group" ng-if="messages.length">
-                  <li class="list-group-item" ng-repeat="message in messages">
-                    {{ message.message.date | date:'MMM d, y h:mm:ss a' }} - {{ message.message.message }}
-                      <a ng-click="markRead($index)" style="cursor:pointer">Mark as read</a>
-                  </li>
-                </ul>
-                {% endverbatim %}
-
-                <div class="list-group" ng-if="messages.length == 0">
-                    <p>No messages here!</p>
-                </div>
-            </div>
-        {% endif %}
-    </div>
-
+<div class="col-md-9">
+    {% if not unread %}
+        {% stored_messages_archive 100 %}
     {% else %}
-        <!-- todo anon user view this -->
+        <div >
+            <div class="text-right">
+                <button type="button" class="btn btn-success" ng-click="markAllRead()">Mark all read</button>
+            </div>
+
+            <hr>
+
+            {% verbatim %}
+            <ul class="list-group" ng-if="messages.length">
+              <li class="list-group-item" ng-repeat="message in messages">
+                {{ message.message.date | date:'MMM d, y h:mm:ss a' }} - {{ message.message.message }}
+                  <a ng-click="markRead($index)" style="cursor:pointer">Mark as read</a>
+              </li>
+            </ul>
+            {% endverbatim %}
+
+            <div class="list-group" ng-if="messages.length == 0">
+                <p>No messages here!</p>
+            </div>
+        </div>
     {% endif %}
-    </div>
+</div>
+
+{% else %}
+    <!-- todo anon user view this -->
+{% endif %}
 </div>
 {% endblock %}
