@@ -1,8 +1,7 @@
 from django.views.generic import TemplateView, FormView
 from django.contrib.messages import add_message
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
-from django.core.urlresolvers import reverse
 
 import stored_messages
 
@@ -28,6 +27,3 @@ class MessagesView(TemplateView):
         if 'unread' in request.GET:
             kwargs['unread'] = True
         return super(MessagesView, self).get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        return super(MessagesView, self).get_context_data(**kwargs)
