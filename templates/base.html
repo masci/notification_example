@@ -17,6 +17,10 @@
                 text-align: center;
             }
         </style>
+
+        <!-- Angularjs. It's here to avoid showing body before angular is fully loaded -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
+        <script src="{%  static "notification/notification.js" %}"></script>
     </head>
 
     <body ng-controller="MainCtrl">
@@ -63,9 +67,6 @@
         <script src="//code.jquery.com/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-        <!-- Angularjs -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
-        <script src="{%  static "notification/notification.js" %}"></script>
         {% endblock %}
     </body>
 </html>
