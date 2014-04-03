@@ -165,3 +165,8 @@ LOGGING = {
 }
 
 MESSAGE_STORAGE = 'stored_messages.storage.PersistentStorage'
+STORED_MESSAGES = {
+    # Change storage backend class to use redis
+    'STORAGE_BACKEND': 'stored_messages.backends.DefaultBackend',
+    'REDIS_URL': 'redis://localhost:6379/0',
+}

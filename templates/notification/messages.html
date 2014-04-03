@@ -36,7 +36,7 @@
             {% verbatim %}
             <ul class="list-group" ng-if="messages.length">
               <li class="list-group-item" ng-repeat="message in messages">
-                {{ message.message.date | date:'MMM d, y h:mm:ss a' }} - {{ message.message.message }}
+                {{ message.date | date:'MMM d, y h:mm:ss a' }} - {{ message.message }}
                   <a ng-click="markRead($index)" style="cursor:pointer">Mark as read</a>
               </li>
             </ul>
